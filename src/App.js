@@ -32,9 +32,9 @@ export default function RetroEventPage() {
           <div className="artists">
             {/* <p className="typing-effect text-lg mb-6">- 11 - Late -</p> */}
             <p className="typing-effect text-lg mb-6">...Matheson & Preference... //</p>
-            <p className="typing-effect text-lg mb-6">...Optmst & Uncle Mo... //</p>
+            <p className="typing-effect text-lg mb-6">...Optmst & Uncle Moe... //</p>
             <p className="typing-effect text-lg mb-6">...Hannah... //</p>
-            <p className="typing-effect text-lg mb-6">...TBA... //</p>
+            <p className="typing-effect text-lg mb-6">...Kessler... //</p>
           </div>
 
           <motion.div
@@ -47,7 +47,7 @@ export default function RetroEventPage() {
             <p>Undisclosed Location</p>
             <p>11 - 5</p>
             <p>
-              Back again this year for the after, limiting tickets to 200 on this to manage numbers so 
+              Back again this year for the after, limiting tickets to 150 on this to manage numbers so 
               if interested in coming please get your tickets ahead of event. 
             </p>
             <p>
