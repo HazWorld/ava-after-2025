@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import './App.css';
 import ayePng from './images/ayeland_logo_white.png';
-import rawPng from './images/raw-logo_d1.png';
+import rawPng from './images/raw-logo-white.png';
 import warePng from './images/bridge_wireframe.png';
 
 export default function RetroEventPage() {
@@ -48,7 +48,8 @@ export default function RetroEventPage() {
             <p>11 - 5</p>
             <p>
               Back again this year for the after, limiting tickets to 150 on this to manage numbers so 
-              if interested in coming please get your tickets ahead of event. 
+              if interested in coming please get your tickets ahead of event. We’re aiming to close doors at 1am 
+              for this if you can get there for then to be sure of entry.
             </p>
             <p>
               We’ll release location info on the Friday for those that don’t already know. 
@@ -60,9 +61,9 @@ export default function RetroEventPage() {
               We’ll be closing up at 5-6 am if you could please arrange travel or plans 
               from then and disperse from area.</p>
             <p>
-            In the case of the event selling out ahead we want to control numbers this 
-            year may ask for discretion in this scenario as word of mouth can get out 
-            of control and we are a small space trying to go under the radar.
+              In the case of the event selling out ahead we want to control numbers this 
+              year may ask for discretion in this scenario as word of mouth can get out 
+              of control and we are a small space trying to go under the radar.
             </p>
             <a
               href="https://www.paypal.com/ncp/payment/6G76CKQPXW53W"
