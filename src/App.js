@@ -32,6 +32,7 @@ export default function RetroEventPage() {
           <div className="artists">
             {/* <p className="typing-effect text-lg mb-6">- 11 - Late -</p> */}
             <p className="typing-effect date-line">.// Saturday 21st May //.</p>
+            <p className="typing-effect date-line">.// 21st May //.</p>
             <p></p>
             <p className="typing-effect text-lg mb-6">...Matheson & Preference... //</p>
             <p className="typing-effect text-lg mb-6">...Optmst & Uncle Moe... //</p>
