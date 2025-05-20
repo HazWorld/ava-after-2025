@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import './App.css';
-import ayePng from './images/ayeland_logo_white.png';
+// import ayePng from './images/ayeland_logo_white.png';
 import rawPng from './images/raw-logo-white.png';
 import warePng from './images/bridge_wireframe.png';
 
@@ -50,6 +50,9 @@ export default function RetroEventPage() {
             <p>Undisclosed Location</p>
             <p>11 - 5</p>
             <p>
+              last entry 1 AM
+            </p>
+            <p>
               Back again this year for the after, limiting tickets to 150 on this to manage numbers so 
               if interested in coming please get your tickets ahead of event. We’re aiming to close doors at 1am 
               for this if you can get there for then to be sure of entry.
@@ -58,7 +61,8 @@ export default function RetroEventPage() {
               We’ll release location info on the Friday for those that don’t already know. 
             </p>
             <p>
-              Ticketholders are able to drop any alcohol at the venue on week of event. 
+              Ticketholders are able to drop any alcohol at the venue on week of event. Email{' '}
+              <span className="email-highlight">info@r-a-w.club</span> to organise.
             </p>
             <p>
               We’ll be closing up at 5-6 am if you could please arrange travel or plans 
@@ -88,13 +92,13 @@ export default function RetroEventPage() {
       </div>
 
       {/* Footer image */}
-      <footer className="App-footer">
+      {/* <footer className="App-footer">
         <img
           src={ayePng}
           alt="Retro Footer"
           className="footer-image"
         />
-      </footer>
+      </footer> */}
     </div>
   );
 }
