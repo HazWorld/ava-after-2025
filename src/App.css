@@ -91,7 +91,7 @@ body, .App {
 
 /* in your CSS or global Tailwind config */
 .date-line {
-  font-size: clamp(1.5rem, 3vw, 2rem); /* slightly bigger than your text-lg */
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* slightly bigger than your text-lg */
   font-weight: 600;
   margin-bottom: 1.5rem; /* match your artists spacing */
 }
