@@ -89,6 +89,12 @@ body, .App {
   margin-top: 20px;
 }
 
+/* in your CSS or global Tailwind config */
+.date-line {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* slightly bigger than your text-lg */
+  font-weight: 600;
+  margin-bottom: 1.5rem; /* match your artists spacing */
+}
 .artists {
   flex: 1;
   min-width: 250px;
