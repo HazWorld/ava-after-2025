@@ -38,7 +38,7 @@ export default function RetroEventPage() {
             <p className="typing-effect text-lg mb-6">...Uncle Moe... //</p>
             <p className="typing-effect text-lg mb-6">...Optmst... //</p>
             <p className="typing-effect text-lg mb-6">...Hannah... //</p>
-            <p className="typing-effect text-lg mb-6">...Kessler... //</p>
+            <p className="typing-effect text-lg mb-6">...TBA... //</p>
           </div>
 
           <motion.div
@@ -93,13 +93,13 @@ export default function RetroEventPage() {
       </div>
 
       {/* Footer image */}
-      {/* <footer className="App-footer">
-        <img
+      <footer className="App-footer">
+        {/* <img
           src={ayePng}
           alt="Retro Footer"
           className="footer-image"
-        />
-      </footer> */}
+        /> */}
+      </footer> 
     </div>
   );
 }
