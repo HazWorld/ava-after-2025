@@ -54,33 +54,22 @@ export default function RetroEventPage() {
               last entry 1 AM
             </p>
             <p>
-              Back again this year for the after, limiting tickets to 150 on this to manage numbers so 
-              if interested in coming please get your tickets ahead of event. We’re aiming to close doors at 1am 
-              for this if you can get there for then to be sure of entry.
-            </p>
-            <p>
-              We’ll release location info on the Friday for those that don’t already know. 
-            </p>
-            <p>
-              Ticketholders are able to drop any alcohol at the venue on week of event. Email{' '}
-              <span className="email-highlight">info@r-a-w.club</span> to organise.
-            </p>
-            <p>
-              We’ll be closing up at 5-6 am if you could please arrange travel or plans 
-              from then and disperse from area.</p>
-            <p>
-              In the case of the event selling out ahead we want to control numbers this 
-              year may ask for discretion in this scenario as word of mouth can get out 
-              of control and we are a small space trying to go under the radar.
-
+            Hey folks – just a heads-up!  Tomorrow’s event is now fully sold out. 
+            If you don’t have a ticket or aren’t on the artist/crew/AAA list, you won’t be able to get in.
 
             </p>
             <p>
-
+            Please don’t turn up hoping to grab a last-minute spot or chance it at the door – we’re at 
+            full capacity and need to respect the safety and comfort of everyone attending.
+ 
             </p>
-            <span className="buy-pass-button mt-4 disabled">
+            <p>
+            Appreciate your understanding – see you at the next one!
+            </p>
+        
+            <p className="buy-pass-button mt-8 disabled">
              Tickets Sold Out
-          </span>
+          </p>
           </motion.div>
         </div>
 
