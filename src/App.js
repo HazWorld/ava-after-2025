@@ -72,14 +72,15 @@ export default function RetroEventPage() {
               In the case of the event selling out ahead we want to control numbers this 
               year may ask for discretion in this scenario as word of mouth can get out 
               of control and we are a small space trying to go under the radar.
+
+
             </p>
-            <a
-              href="https://www.paypal.com/ncp/payment/6G76CKQPXW53W"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="buy-pass-button mt-4">Tickets</button>
-            </a>
+            <p>
+
+            </p>
+            <span className="buy-pass-button mt-4 disabled">
+             Tickets Sold Out
+          </span>
           </motion.div>
         </div>
 

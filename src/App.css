@@ -226,4 +226,9 @@ body, .App {
   .event-details {
     margin-top: 1rem;
   }
+  .buy-pass-button.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
 }
