@@ -1,39 +1,60 @@
 .App {
+  position: relative;
   width: 100%;
   min-height: 100vh;
+  background: black;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+/* Blurred background behind everything */
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/RAW-tickets.svg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) brightness(0.4);
+  z-index: -2;
+}
+
+/* The wrapper controls size and anchors the button */
 .poster-wrapper {
   position: relative;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.background-svg {
+/* Poster image fills wrapper but does NOT use absolute */
+.poster-image {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.ticket-button {
+/* Button overlay — positioned absolutely inside the wrapper */
+.ticket-button-overlay {
   position: absolute;
-  bottom: 17%;
-  right: 3%;
-  z-index: 10;
-  display: inline-block;
-  cursor: pointer;
+  top: 69%;         /* adjust based on your image */
+  left: 74%;        /* adjust based on your image */
+  transform: translate(-50%, -50%);
+  width: 20%;       /* scales with the poster image */
+  min-width: 100px;
+  max-width: 300px;
+  z-index: 2;
 }
 
-/* Glitch effect container */
+/* Glitch container */
 .ticket-button-glitch {
-  width: 430px;
-  height: auto;
+  width: 100%;
   position: relative;
   animation: glitch-base 0.8s infinite steps(1, end);
 }
 
-/* Actual ticket image */
 .ticket-button-glitch img {
   width: 100%;
   height: auto;
@@ -42,7 +63,7 @@
   z-index: 1;
 }
 
-/* RGB glitch layers */
+/* Glitch layers */
 .ticket-button-glitch::before,
 .ticket-button-glitch::after {
   content: '';
@@ -51,7 +72,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/TicketImage.png'); /* Adjust if needed */
+  background-image: url('./images/TicketImage.png');
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 0.7;
@@ -72,7 +93,7 @@
   filter: drop-shadow(2px 0 blue) brightness(1.2);
 }
 
-/* Base jitter */
+/* Glitch animations */
 @keyframes glitch-base {
   0%   { transform: none; }
   5%   { transform: translate(5px, -5px) scale(1.01) rotate(-1deg); }
@@ -90,7 +111,6 @@
   100% { transform: none; }
 }
 
-/* RGB channel clipping */
 @keyframes glitch-rgb {
   0%   { clip-path: inset(5% 0 75% 0); }
   10%  { clip-path: inset(35% 0 45% 0); }
@@ -103,4 +123,11 @@
   80%  { clip-path: inset(70% 0 5% 0); }
   90%  { clip-path: inset(30% 0 50% 0); }
   100% { clip-path: inset(5% 0 75% 0); }
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+  .ticket-button-overlay {
+    width: 35%;
+  }
 }
