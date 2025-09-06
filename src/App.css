@@ -40,15 +40,38 @@
 }
 
 /* Button overlay — positioned inside poster */
+.poster-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 50px; /* Prevent button cutoff on scroll */
+}
+
+.poster-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ✅ Position relative to image height */
 .ticket-button-overlay {
   position: absolute;
-  top: 50%;              /* Adjust as needed */
-  left: 74%;             /* Adjust as needed */
+  top: 69%;              /* Adjust based on visual testing */
+  left: 74%;             /* Adjust based on visual testing */
   transform: translate(-50%, -50%);
-  width: 20%;            /* Scales with poster */
+  width: 20%;
   min-width: 100px;
   max-width: 300px;
   z-index: 2;
+}
+
+/* ✅ Responsive tweak */
+@media (max-width: 600px) {
+  .ticket-button-overlay {
+    top: 72%;  /* adjust for mobile layout if needed */
+    width: 35%;
+  }
 }
 
 /* Glitch container */
