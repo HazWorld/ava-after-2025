@@ -7,7 +7,7 @@
   overflow-y: auto;
 }
 
-/* Blurred background behind everything */
+/* === Blurred Background === */
 .background-blur {
   position: fixed;
   top: 0;
@@ -18,34 +18,22 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #000; /* Fallback */
+  background-color: #000;
   filter: blur(40px) brightness(0.4);
   z-index: -2;
 }
 
-/* The wrapper controls size and anchors the button */
+/* === Poster === */
 .poster-wrapper {
-  position: relative;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding-bottom: 100px; /* So button isn't cut off on scroll */
+  padding-bottom: 100px;
 }
 
-/* Poster image fills wrapper */
-.poster-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Button overlay — positioned inside poster */
-.poster-wrapper {
+.poster-image-container {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding-bottom: 50px; /* Prevent button cutoff on scroll */
 }
 
 .poster-image {
@@ -54,25 +42,33 @@
   display: block;
 }
 
-/* ✅ Position relative to image height */
+/* === Ticket Button === */
 .ticket-button-overlay {
   position: absolute;
-  top: 65%;  /* Desktop */
-  left: 74%;
-  transform: translate(-50%, -50%);
+  bottom: 15%; /* anchor based on bottom of poster image */
+  left: 50%;
+  transform: translateX(-50%);
   width: 20%;
   min-width: 100px;
   max-width: 300px;
   z-index: 2;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) and (orientation: portrait) {
   .ticket-button-overlay {
-    top: 30%; /* ✅ Adjust for mobile here only */
+    bottom: 15%;
     width: 35%;
   }
 }
-/* Glitch container */
+
+@media (max-width: 600px) and (orientation: landscape) {
+  .ticket-button-overlay {
+    bottom: 10%;
+    width: 30%;
+  }
+}
+
+/* === Glitch Button Effect === */
 .ticket-button-glitch {
   width: 100%;
   position: relative;
@@ -87,7 +83,6 @@
   z-index: 1;
 }
 
-/* Glitch layers */
 .ticket-button-glitch::before,
 .ticket-button-glitch::after {
   content: '';
@@ -117,7 +112,6 @@
   filter: drop-shadow(1px 0 blue) brightness(1.05);
 }
 
-/* Subtle Glitch Animations */
 @keyframes glitch-base {
   0%, 100%   { transform: none; }
   20%        { transform: translate(1px, -1px); }
@@ -133,20 +127,7 @@
   75%        { clip-path: inset(7% 0 83% 0); }
 }
 
-/* Responsive tweak for small screens */
-@media (max-width: 600px) {
-  .ticket-button-overlay {
-    width: 35%;
-    top: 72%; /* Adjust slightly for mobile layout */
-  }
-
-  .poster-wrapper {
-    padding-bottom: 150px;
-  }
-}
-
-/* ===== Password Overlay Styles (Responsive) ===== */
-
+/* === Password Overlay === */
 .password-overlay {
   position: fixed;
   top: 0;
@@ -159,7 +140,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem; /* Prevent edge hugging on small screens */
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -231,7 +212,6 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Optional fade-in for error */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }

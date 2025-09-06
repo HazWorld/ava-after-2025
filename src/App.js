@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './App.css';
 import PosterBackground from "./images/RAW-poster.png";
 import ticketButtonPng from "./images/TicketImage.png";
@@ -8,7 +8,7 @@ export default function RetroEventPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const correctPassword = "RAW2025"; // Change this as needed
+  const correctPassword = "RAW2025";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,8 +33,6 @@ export default function RetroEventPage() {
               placeholder="Password"
             />
             <button type="submit">Unlock</button>
-
-            {/* 🔥 Error message if password is wrong */}
             {showError && (
               <div className="error-message">
                 Incorrect password. Please try again.
@@ -49,23 +47,25 @@ export default function RetroEventPage() {
           <div className="background-blur" />
 
           <div className="poster-wrapper">
-            <img
-              src={PosterBackground}
-              alt="Background Poster"
-              className="poster-image"
-            />
+            <div className="poster-image-container">
+              <img
+                src={PosterBackground}
+                alt="Background Poster"
+                className="poster-image"
+              />
 
-            <div className="ticket-button-overlay">
-              <a
-                href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ticket-button"
-              >
-                <div className="ticket-button-glitch">
-                  <img src={ticketButtonPng} alt="Buy Tickets" />
-                </div>
-              </a>
+              <div className="ticket-button-overlay">
+                <a
+                  href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ticket-button"
+                >
+                  <div className="ticket-button-glitch">
+                    <img src={ticketButtonPng} alt="Buy Tickets" />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </>
