@@ -17,6 +17,8 @@
   background-image: url('./images/RAW-tickets.svg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000; /* Fallback */
   filter: blur(40px) brightness(0.4);
   z-index: -2;
 }
@@ -27,22 +29,23 @@
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 100px; /* So button isn't cut off on scroll */
 }
 
-/* Poster image fills wrapper but does NOT use absolute */
+/* Poster image fills wrapper */
 .poster-image {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Button overlay — positioned absolutely inside the wrapper */
+/* Button overlay — positioned inside poster */
 .ticket-button-overlay {
   position: absolute;
-  top: 69%;         /* adjust based on your image */
-  left: 74%;        /* adjust based on your image */
+  top: 69%;              /* Adjust as needed */
+  left: 74%;             /* Adjust as needed */
   transform: translate(-50%, -50%);
-  width: 20%;       /* scales with the poster image */
+  width: 20%;            /* Scales with poster */
   min-width: 100px;
   max-width: 300px;
   z-index: 2;
@@ -109,9 +112,106 @@
   75%        { clip-path: inset(7% 0 83% 0); }
 }
 
-/* Responsive tweak */
+/* Responsive tweak for small screens */
 @media (max-width: 600px) {
   .ticket-button-overlay {
     width: 35%;
+    top: 72%; /* Adjust slightly for mobile layout */
   }
+
+  .poster-wrapper {
+    padding-bottom: 150px;
+  }
+}
+
+/* ===== Password Overlay Styles (Responsive) ===== */
+
+.password-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Prevent edge hugging on small screens */
+  box-sizing: border-box;
+}
+
+.password-box {
+  background: rgba(20, 20, 20, 0.95);
+  border: 2px solid #ff00ff;
+  padding: 2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ff00ff, 0 0 30px #00ffff;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  font-family: 'Courier New', Courier, monospace;
+  animation: pulse-box 2s infinite alternate;
+}
+
+.password-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 15px #ff00ff;
+}
+
+.password-box input {
+  padding: 0.8rem 1rem;
+  border: 2px solid #ff00ff;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.password-box button {
+  padding: 0.6rem 1.5rem;
+  background-color: #ff00ff;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.password-box button:hover {
+  background-color: #00ffff;
+  color: #000;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes pulse-box {
+  0% {
+    box-shadow: 0 0 10px #ff00ff, 0 0 30px #00ffff;
+  }
+  100% {
+    box-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff;
+  }
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 5px #ff0000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Optional fade-in for error */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
