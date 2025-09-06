@@ -57,8 +57,8 @@
 /* ✅ Position relative to image height */
 .ticket-button-overlay {
   position: absolute;
-  top: 65%;              /* Adjust based on visual testing */
-  left: 74%;             /* Adjust based on visual testing */
+  top: 65%;  /* Desktop */
+  left: 74%;
   transform: translate(-50%, -50%);
   width: 20%;
   min-width: 100px;
@@ -66,14 +66,12 @@
   z-index: 2;
 }
 
-/* ✅ Responsive tweak */
 @media (max-width: 600px) {
   .ticket-button-overlay {
-    top: 55%;  /* adjust for mobile layout if needed */
+    top: 58%; /* ✅ Adjust for mobile here only */
     width: 35%;
   }
 }
-
 /* Glitch container */
 .ticket-button-glitch {
   width: 100%;
