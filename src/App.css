@@ -68,7 +68,7 @@
 
 @media (max-width: 600px) {
   .ticket-button-overlay {
-    top: 58%; /* ✅ Adjust for mobile here only */
+    top: 30%; /* ✅ Adjust for mobile here only */
     width: 35%;
   }
 }
