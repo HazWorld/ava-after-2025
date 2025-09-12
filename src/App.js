@@ -2,32 +2,38 @@ import React, { useState } from "react";
 import './App.css';
 import PosterBackground from "./images/RAW-poster-new.png";
 import ticketButtonPng from "./images/TicketImage.png";
-import passwordImage from "./images/raw-logo-white.png"
+import passwordImage from "./images/RAW-new.png"
 
 export default function RetroEventPage() {
-  // const [password, setPassword] = useState("");
-  // const [authenticated, setAuthenticated] = useState(false);
-  // const [showError, setShowError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
+  const [showError, setShowError] = useState(false);
 
-  // const correctPassword = "RAW2025";
+  const correctPassword = process.env.REACT_APP_SITE_PASSWORD;
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (password === correctPassword) {
-  //     setAuthenticated(true);
-  //     setShowError(false);
-  //   } else {
-  //     setShowError(true);
-  //   }
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === correctPassword) {
+      setAuthenticated(true);
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
+  };
 
   return (
     <div className="App">
-      {/* {!authenticated && (
+      {!authenticated && (
         <div className="password-overlay">
           <form onSubmit={handleSubmit} className="password-box">
-            <img src={passwordImage} alt="RAW Logo" className="password-logo" />
-            <h2>Enter Password</h2>
+
+            <img
+              src={passwordImage}
+              alt="RAW Logo"
+              className="password-logo"
+            />
+
+            {/* <h2>Enter Password</h2> */}
             <input
               type="password"
               value={password}
@@ -36,41 +42,42 @@ export default function RetroEventPage() {
             />
             <button type="submit">Unlock</button>
             {showError && (
-              <div className="error-message">Incorrect password. Please try again.</div>
+              <div className="error-message">
+                Incorrect password. Please try again.
+              </div>
             )}
           </form>
         </div>
-      )} */}
+      )}
 
-      {/* 🔓 Page is always accessible for now */}
-      {/* {authenticated && ( */}
-      <>
-        <div className="background-blur" />
+      {authenticated && (
+        <>
+          <div className="background-blur" />
 
-        <div className="poster-wrapper">
-          <div className="poster-image-container">
-            <img
-              src={PosterBackground}
-              alt="Background Poster"
-              className="poster-image"
-            />
+          <div className="poster-wrapper">
+            <div className="poster-image-container">
+              <img
+                src={PosterBackground}
+                alt="Background Poster"
+                className="poster-image"
+              />
 
-            <div className="ticket-button-overlay">
-              <a
-                href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ticket-button"
-              >
-                <div className="ticket-button-glitch">
-                  <img src={ticketButtonPng} alt="Buy Tickets" />
-                </div>
-              </a>
+              <div className="ticket-button-overlay">
+                <a
+                  href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ticket-button"
+                >
+                  <div className="ticket-button-glitch">
+                    <img src={ticketButtonPng} alt="Buy Tickets" />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </>
-      {/* )} */}
+        </>
+      )}
     </div>
   );
 }
