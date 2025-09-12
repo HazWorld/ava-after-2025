@@ -9,7 +9,7 @@ export default function RetroEventPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const correctPassword = process.env.REACT_APP_SITE_PASSWORD;
+  const correctPassword = "circles";
 
   const handleSubmit = (e) => {
     e.preventDefault();
