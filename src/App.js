@@ -64,7 +64,7 @@ export default function RetroEventPage() {
 
               <div className="ticket-button-overlay">
                 <a
-                  href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
+                  // href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ticket-button"
