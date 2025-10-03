@@ -5,7 +5,7 @@ import ticketButtonPng from "./images/TicketImage.png";
 import passwordImage from "./images/RAW-new.png"
 
 export default function RetroEventPage() {
-  const correctPassword = "Gemini";
+  const correctPassword = "WIP";
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [showError, setShowError] = useState(false);
