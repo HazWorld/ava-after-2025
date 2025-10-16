@@ -32,7 +32,7 @@
 }
 
 .poster-image-container {
-  position: relative;
+  position: relative; /* needed for absolute overlay */
   width: 100%;
 }
 
@@ -42,89 +42,28 @@
   display: block;
 }
 
-/* === Ticket Button === */
-.ticket-button-overlay {
+/* === Ticket Overlay (new) === */
+/* The link covers the poster area */
+.ticket-overlay-link {
   position: absolute;
-  bottom: 30%; /* anchor based on bottom of poster image */
-  left: 75%;
-  transform: translateX(-50%);
-  width: 20%;
-  min-width: 100px;
-  max-width: 300px;
+  inset: 0;         /* top:0; right:0; bottom:0; left:0 */
+  display: block;
   z-index: 2;
 }
 
-@media (max-width: 600px) and (orientation: portrait) {
-  .ticket-button-overlay {
-    bottom: 25%;
-    width: 25%;
-  }
-}
-
-@media (max-width: 600px) and (orientation: landscape) {
-  .ticket-button-overlay {
-    bottom: 10%;
-    width: 30%;
-  }
-}
-
-/* === Glitch Button Effect === */
-.ticket-button-glitch {
-  width: 100%;
-  position: relative;
-  animation: glitch-base 3s infinite ease-in-out;
-}
-
-.ticket-button-glitch img {
-  width: 100%;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-.ticket-button-glitch::before,
-.ticket-button-glitch::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+/* The ticket image matches the poster exactly */
+.ticket-overlay-image {
   width: 100%;
   height: 100%;
-  background-image: url('./images/TicketImage.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-  pointer-events: none;
+  object-fit: cover;  /* assumes identical aspect ratio */
+  display: block;
+  pointer-events: none; /* link click passes through image */
 }
 
-.ticket-button-glitch::before {
-  left: 2px;
-  animation: glitch-rgb 2s infinite;
-  mix-blend-mode: screen;
-  filter: drop-shadow(-1px 0 red) brightness(1.05);
-}
-
-.ticket-button-glitch::after {
-  left: -2px;
-  animation: glitch-rgb 2s infinite reverse;
-  mix-blend-mode: screen;
-  filter: drop-shadow(1px 0 blue) brightness(1.05);
-}
-
-@keyframes glitch-base {
-  0%, 100%   { transform: none; }
-  20%        { transform: translate(1px, -1px); }
-  40%        { transform: translate(-1px, 1px); }
-  60%        { transform: translate(0.5px, -0.5px); }
-  80%        { transform: translate(-0.5px, 0.5px); }
-}
-
-@keyframes glitch-rgb {
-  0%, 100%   { clip-path: inset(0% 0 0% 0); }
-  25%        { clip-path: inset(5% 0 85% 0); }
-  50%        { clip-path: inset(10% 0 80% 0); }
-  75%        { clip-path: inset(7% 0 83% 0); }
+/* (Optional) subtle hover cue for interactivity */
+.ticket-overlay-link:hover {
+  outline: 2px solid rgba(255,255,255,0.12);
+  outline-offset: -2px;
 }
 
 /* === Password Overlay === */
@@ -158,21 +97,17 @@
   font-size: 1.5rem;
   margin-bottom: 1.2rem;
   color: #ffffff;
-  /* text-shadow: 0 0 5px #00ffff, 0 0 15px #ff00ff; */
 }
 
 .password-box input {
   padding: 0.8rem 1rem;
-  /* border: 2px solid #ff00ff; */
   background: #000;
   color: #fff;
   font-size: 1rem;
   width: 100%;
   margin-bottom: 1rem;
-  /* border-radius: 5px; */
   outline: none;
   box-sizing: border-box;
-  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .password-box button {
@@ -181,8 +116,6 @@
   color: #000;
   border: none;
   font-weight: bold;
-  /* font-family: 'Courier New', Courier, monospace; */
-  /* border-radius: 5px; */
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -190,18 +123,7 @@
 .password-box button:hover {
   background-color: #797979;
   color: #000;
-  
-  /* box-shadow: 0 0 10px #00ffff; */
 }
-
-/* @keyframes pulse-box {
-  0% {
-    box-shadow: 0 0 10px #ff00ff, 0 0 30px #00ffff;
-  }
-  100% {
-    box-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff;
-  }
-} */
 
 .error-message {
   color: #ff4444;
@@ -223,5 +145,105 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* filter: drop-shadow(0 0 8px #ffffff); */
+}
+/* Poster container (already present) */
+.poster-image-container {
+  position: relative;
+  width: 100%;
+}
+.poster-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Overlay link covers the poster area ---- */
+.ticket-overlay-link {
+  position: absolute;
+  inset: 0;          /* top/right/bottom/left: 0 */
+  display: block;
+  z-index: 2;
+  text-decoration: none;
+}
+
+/* The ticket image matches the poster exactly */
+.ticket-overlay-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* assumes identical aspect ratio */
+  display: block;
+  pointer-events: none; /* clicks go to the link wrapper */
+}
+
+/* ---- Glitch effect (layout-safe) ---- */
+.ticket-glitch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: glitch-wobble 3s infinite ease-in-out;
+}
+
+/* Pseudo layers reuse the same image via CSS var on the link */
+.ticket-glitch::before,
+.ticket-glitch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--ticket-img);
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Red/blue channel offsets + scanning slices */
+.ticket-glitch::before {
+  filter: drop-shadow(-1px 0 red) brightness(1.05);
+  transform: translateX(1px);
+  animation: glitch-scan 2s infinite;
+}
+.ticket-glitch::after {
+  filter: drop-shadow(1px 0 blue) brightness(1.05);
+  transform: translateX(-1px);
+  animation: glitch-scan 2s infinite reverse;
+}
+
+/* Subtle base wobble */
+@keyframes glitch-wobble {
+  0%, 100% { transform: none; }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { transform: translate(0.5px, -0.5px); }
+  80% { transform: translate(-0.5px, 0.5px); }
+}
+
+/* Slicing scan lines */
+@keyframes glitch-scan {
+  0%, 100% { clip-path: inset(0 0 0 0); }
+  25% { clip-path: inset(6% 0 84% 0); }
+  50% { clip-path: inset(12% 0 78% 0); }
+  75% { clip-path: inset(8% 0 82% 0); }
+}
+
+/* Optional: interactive cue */
+.ticket-overlay-link:hover .ticket-glitch,
+.ticket-overlay-link:focus .ticket-glitch {
+  animation-duration: 2.2s;
+}
+.ticket-overlay-link:hover .ticket-glitch::before,
+.ticket-overlay-link:focus .ticket-glitch::before,
+.ticket-overlay-link:hover .ticket-glitch::after,
+.ticket-overlay-link:focus .ticket-glitch::after {
+  opacity: 0.9;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ticket-glitch,
+  .ticket-glitch::before,
+  .ticket-glitch::after {
+    animation: none !important;
+    transform: none !important;
+  }
 }

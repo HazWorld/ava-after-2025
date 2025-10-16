@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import './App.css';
-import PosterBackground from "./images/RAW-poster-new.png";
-import ticketButtonPng from "./images/TicketImage.png";
-import passwordImage from "./images/RAW-new.png"
+import "./App.css";
+import PosterBackground from "./images/raw-oct-flyer.webp";
+import ticketButtonPng from "./images/raw-oct-ticket-only.webp";
+import passwordImage from "./images/RAW-new.png";
 
 export default function RetroEventPage() {
   const correctPassword = "WIP";
   const [password, setPassword] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [showError, setShowError] = useState(false);
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,14 +25,7 @@ export default function RetroEventPage() {
       {!authenticated && (
         <div className="password-overlay">
           <form onSubmit={handleSubmit} className="password-box">
-
-            <img
-              src={passwordImage}
-              alt="RAW Logo"
-              className="password-logo"
-            />
-
-            {/* <h2>Enter Password</h2> */}
+            <img src={passwordImage} alt="RAW Logo" className="password-logo" />
             <input
               type="password"
               value={password}
@@ -57,24 +48,31 @@ export default function RetroEventPage() {
 
           <div className="poster-wrapper">
             <div className="poster-image-container">
+              {/* Base poster image */}
               <img
                 src={PosterBackground}
-                alt="Background Poster"
+                alt="Event Poster"
                 className="poster-image"
               />
 
-              <div className="ticket-button-overlay">
-                <a
-                  // href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ticket-button"
-                >
-                  <div className="ticket-button-glitch">
-                    <img src={ticketButtonPng} alt="Buy Tickets" />
-                  </div>
-                </a>
-              </div>
+              {/* Overlay ticket (same dimensions) with glitch */}
+              <a
+                // href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ticket-overlay-link"
+                style={{ "--ticket-img": `url(${ticketButtonPng})` }}
+                aria-label="Buy tickets"
+              >
+                <div className="ticket-glitch">
+                  <img
+                    src={ticketButtonPng}
+                    alt=""
+                    className="ticket-overlay-image"
+                    aria-hidden="true"
+                  />
+                </div>
+              </a>
             </div>
           </div>
         </>
