@@ -57,7 +57,7 @@ export default function RetroEventPage() {
 
               {/* Overlay ticket (same dimensions) with glitch */}
               <a
-                // href="https://www.paypal.com/ncp/payment/FY6F6Z34V2TKL"
+                href="https://www.paypal.com/ncp/payment/685EX6N7WCHTU"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ticket-overlay-link"
