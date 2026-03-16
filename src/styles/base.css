@@ -1,0 +1,30 @@
+/* === App shell === */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; 
+  }
+
+.App {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  /* === Blurred background === */
+  /* .background-blur {
+    position: fixed;
+    inset: 0;
+    background-image: url('../images/RAW-tickets.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000;
+    filter: blur(40px) brightness(0.5);
+    z-index: -2;
+  } */

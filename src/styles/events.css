@@ -1,0 +1,178 @@
+/* =========================
+   EVENTS WRAPPER
+   ========================= */
+
+   .events-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 16px 120px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    box-sizing: border-box;
+  }
+  
+  /* =========================
+     SECTIONS
+     ========================= */
+  
+  .events-section {
+    margin-bottom: 64px;
+  }
+  
+  .events-section h1 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  
+  /* =========================
+     EVENT CARD
+     ========================= */
+  
+  .event-card {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 16px;
+    margin-bottom: 16px;
+    background: rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    overflow: hidden; /* prevents mobile bleed */
+  }
+  
+  .event-card h2 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  
+  /* =========================
+     EVENT IMAGE (FIXED)
+     ========================= */
+  
+  .event-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;     /* 🔑 key fix */
+    object-fit: contain;     /* change to cover if desired */
+    background: #000;
+    border-radius: 10px;
+    display: block;
+    margin: 12px 0;
+  }
+  
+  /* =========================
+     ADMIN INPUTS
+     ========================= */
+  
+  .admin-input,
+  .admin-textarea {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0.6rem;
+    background: #000;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+  }
+  
+  .admin-textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  .admin-input:focus,
+  .admin-textarea:focus {
+    outline: none;
+    border-color: #fff;
+  }
+  
+  /* =========================
+     ADMIN ACTIONS
+     ========================= */
+  
+  .admin-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .admin-save {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .admin-delete {
+    background: transparent;
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  
+  /* =========================
+     SITE INFO SECTION
+     ========================= */
+  
+     .site-info {
+        margin-top: 60px;
+        padding-top: 40px;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        color: #fff; /* Ensure text is white by default */
+      }
+      
+      .site-info-column {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .site-info-column p,
+      .site-info-column pre {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .site-info-column textarea {
+        max-width: 500px;
+      }
+      
+      .site-info textarea {
+        width: 100%;
+        min-height: 120px;
+        background: #111; /* dark background for textarea */
+        color: #fff;      /* white text inside textarea */
+        border: 1px solid #333;
+        padding: 12px;
+        resize: vertical;
+        font-family: 'Courier New', Courier, monospace;
+      }
+  
+  /* =========================
+     LINKS
+     ========================= */
+  
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  /* =========================
+     MOBILE
+     ========================= */
+  
+  @media (max-width: 768px) {
+    .site-info {
+      grid-template-columns: 1fr;
+    }
+  
+    .events-wrapper {
+      padding-top: 64px;
+    }
+  }
