@@ -3,7 +3,7 @@
    ========================= */
 
    .events-wrapper {
-    max-width: 800px;
+    
     margin: 0 auto;
     padding: 80px 16px 120px;
     font-family: 'Courier New', Courier, monospace;
@@ -49,8 +49,8 @@
   
   .event-image {
     width: 100%;
-    aspect-ratio: 16 / 9;     /* 🔑 key fix */
-    object-fit: contain;     /* change to cover if desired */
+    /*aspect-ratio: 16 / 9;     /* 🔑 key fix */
+    object-fit: contain;     /* change to cover if desired ) */
     background: #000;
     border-radius: 10px;
     display: block;

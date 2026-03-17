@@ -191,6 +191,14 @@ export default function EventsContent() {
               <h2>{event.title}</h2>
               <p>{event.date} — {event.location}</p>
               <p>{event.description}</p>
+              <a
+      href={event.ticket_link || "https://www.paypal.com/ncp/payment/SZ8FH6RMXP6PY"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="buy-ticket-btn"
+    >
+      Buy Ticket
+    </a>
             </>
           )}
         </div>
