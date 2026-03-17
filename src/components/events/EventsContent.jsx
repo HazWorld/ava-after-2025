@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useEvents } from "../../hooks/useEvents";
 import { useProfile } from "../../hooks/useProfile";
 import { supabase } from "../../lib/supabaseClient";
+import ticketImage from "../../images/TicketImage.png";
 
 export default function EventsContent() {
   console.log("EventsContent rendered");
@@ -61,6 +62,7 @@ export default function EventsContent() {
         date: event.date,
         location: event.location,
         description: event.description,
+        ticket_link: event.ticket_link,
       })
       .eq("id", event.id);
 
@@ -95,7 +97,7 @@ export default function EventsContent() {
 
   return (
     <div className="events-wrapper">
-      <h1>Events</h1>
+      {isAdmin && <h1>Events</h1>}
   
       {isAdmin && (
         <button onClick={addEvent} className="admin-btn">
@@ -109,15 +111,27 @@ export default function EventsContent() {
         <div className="event-card" key={event.id}>
           {isAdmin ? (
             <>
-              {/* IMAGE PREVIEW */}
+              {/* IMAGE PREVIEW WITH TICKET OVERLAY */}
               {event.image_url && (
-                <img
-                  src={event.image_url}
-                  alt={event.title}
-                  className="event-image"
-                />
+                <div className="event-image-container">
+                  <img
+                    src={event.image_url}
+                    alt={event.title}
+                    className="event-image"
+                  />
+                  {event.ticket_link && (
+                    <a
+                      href={event.ticket_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ticket-overlay"
+                    >
+                      <img src={ticketImage} alt="Buy Tickets" className="ticket-overlay-img" />
+                    </a>
+                  )}
+                </div>
               )}
-  
+
               {/* IMAGE UPLOAD */}
               <input
                 type="file"
@@ -127,7 +141,7 @@ export default function EventsContent() {
                   uploadEventImage(event.id, e.target.files[0]);
                 }}
               />
-  
+
               <input
                 className="admin-input"
                 value={event.title}
@@ -135,16 +149,16 @@ export default function EventsContent() {
                   updateLocalEvent(event.id, "title", e.target.value)
                 }
               />
-  
+
               <input
-                type = "date"
+                type="date"
                 className="admin-input"
                 value={event.date}
                 onChange={(e) =>
                   updateLocalEvent(event.id, "date", e.target.value)
                 }
               />
-  
+
               <input
                 className="admin-input"
                 value={event.location}
@@ -152,7 +166,7 @@ export default function EventsContent() {
                   updateLocalEvent(event.id, "location", e.target.value)
                 }
               />
-  
+
               <textarea
                 className="admin-textarea"
                 value={event.description}
@@ -160,7 +174,16 @@ export default function EventsContent() {
                   updateLocalEvent(event.id, "description", e.target.value)
                 }
               />
-  
+
+              <input
+                className="admin-input"
+                placeholder="Ticket link (PayPal URL)"
+                value={event.ticket_link || ""}
+                onChange={(e) =>
+                  updateLocalEvent(event.id, "ticket_link", e.target.value)
+                }
+              />
+
               <div className="admin-actions">
                 <button
                   className="admin-save"
@@ -168,7 +191,7 @@ export default function EventsContent() {
                 >
                   Save
                 </button>
-  
+
                 <button
                   className="admin-delete"
                   onClick={() => deleteEvent(event.id)}
@@ -180,25 +203,27 @@ export default function EventsContent() {
           ) : (
             <>
               {/* PUBLIC VIEW */}
-              {event.image_url && (
-                <img
-                  src={event.image_url}
-                  alt={event.title}
-                  className="event-image"
-                />
-              )}
-  
-              <h2>{event.title}</h2>
-              <p>{event.date} — {event.location}</p>
-              <p>{event.description}</p>
-              <a
-      href={event.ticket_link || "https://www.paypal.com/ncp/payment/SZ8FH6RMXP6PY"}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="buy-ticket-btn"
-    >
-      Buy Ticket
-    </a>
+              <div className="event-image-container">
+                {event.image_url && (
+                  <img
+                    src={event.image_url}
+                    alt={event.title}
+                    className="event-image"
+                  />
+                )}
+                {event.ticket_link && (
+                  <a
+                    href={event.ticket_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ticket-overlay"
+                  >
+                    <img src={ticketImage} alt="Buy Tickets" className="ticket-overlay-img" />
+                  </a>
+                )}
+              </div>
+
+              {/* Event info hidden from public view for now */}
             </>
           )}
         </div>

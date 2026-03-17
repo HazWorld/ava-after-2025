@@ -3,7 +3,7 @@
    ========================= */
 
    .events-wrapper {
-    
+    max-width: 600px;
     margin: 0 auto;
     padding: 80px 16px 120px;
     font-family: 'Courier New', Courier, monospace;
@@ -48,15 +48,72 @@
      ========================= */
   
   .event-image {
-    width: 100%;
-    /*aspect-ratio: 16 / 9;     /* 🔑 key fix */
-    object-fit: contain;     /* change to cover if desired ) */
-    background: #000;
-    border-radius: 10px;
     display: block;
-    margin: 12px 0;
+    width: auto;
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: 10px;
+    background: #000;
+    margin: 0;
+  }
+
+  .event-image-container {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
   }
   
+  /* =========================
+     EVENT IMAGE CONTAINER + TICKET OVERLAY
+     ========================= */
+
+  .ticket-overlay {
+    position: absolute;
+    bottom: 25%;
+    right: 16px;
+    z-index: 2;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .ticket-overlay:hover {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+  }
+
+  .ticket-overlay-img {
+    width: 120px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+    animation: ticket-glitch 4s infinite;
+  }
+
+  @keyframes ticket-glitch {
+    0%, 100% { transform: none; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); opacity: 1; }
+    2% { transform: translate(-2px, 1px) skewX(-2deg); filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)) drop-shadow(2px 0 0 rgba(255,0,0,0.5)); }
+    4% { transform: translate(2px, -1px) skewX(1deg); filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)) drop-shadow(-2px 0 0 rgba(0,255,255,0.5)); }
+    5% { transform: none; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); opacity: 1; }
+    45%, 46% { opacity: 0.7; transform: translate(1px, 0); }
+    47% { opacity: 1; transform: none; }
+    70% { transform: none; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); }
+    71% { transform: translate(-3px, 1px) skewX(3deg); filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)) drop-shadow(3px 0 0 rgba(255,0,0,0.6)); opacity: 0.85; }
+    72% { transform: translate(1px, -2px); filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)) drop-shadow(-2px 0 0 rgba(0,255,255,0.6)); }
+    73% { transform: none; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticket-overlay-img {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ticket-overlay-img {
+      width: 90px;
+    }
+  }
+
   /* =========================
      ADMIN INPUTS
      ========================= */
@@ -171,8 +228,33 @@
     .site-info {
       grid-template-columns: 1fr;
     }
-  
+
     .events-wrapper {
-      padding-top: 64px;
+      padding: 64px 0 120px;
+    }
+
+    .events-wrapper h1 {
+      padding-left: 16px;
+    }
+
+    .event-card {
+      border-left: none;
+      border-right: none;
+      padding: 0;
+    }
+
+    .event-card h2,
+    .event-card p {
+      padding: 0 16px;
+    }
+
+    .event-image {
+      width: 100%;
+      border-radius: 0;
+      max-height: none;
+    }
+
+    .event-image-container {
+      width: 100%;
     }
   }

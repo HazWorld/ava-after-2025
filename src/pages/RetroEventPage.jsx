@@ -1,10 +1,13 @@
 import { useAuth } from "../hooks/useAuth";
+import { useProfile } from "../hooks/useProfile";
 import LoginOverlay from "../components/auth/LoginOverlay";
 import EventsContent from "../components/events/EventsContent";
 import { SiteInfoSection } from "../components/events/SiteInfoSection";
 
 export default function RetroEventPage() {
   const { authenticated, login, signup, logout } = useAuth();
+  const profile = useProfile();
+  const isAdmin = profile?.role === "admin";
 
   if (!authenticated) {
     return <LoginOverlay onLogin={login} onSignup={signup} />;
@@ -21,7 +24,7 @@ export default function RetroEventPage() {
       </div>
 
       <EventsContent />
-      <SiteInfoSection />
+      {isAdmin && <SiteInfoSection />}
     </>
   );
 }
