@@ -10,16 +10,13 @@ export default function LoginOverlay({ onLogin, onSignup }) {
   const [error, setError] = useState("");
   const [signupOpen, setSignupOpen] = useState(false);
 
-  // EMAIL LOGIN
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     setError("");
-
     const { error } = await onLogin(email.trim(), password);
     if (error) setError("Incorrect email or password.");
   };
 
-  // ACCESS CODE LOGIN
   const handleCodeLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -37,12 +34,11 @@ export default function LoginOverlay({ onLogin, onSignup }) {
     }
 
     const { error: authError } = await supabase.auth.signInAnonymously();
-
     if (authError) {
       console.error(authError);
       setError("Failed to log in with code.");
     } else {
-      window.location.reload(); // ensure UI updates
+      window.location.reload();
     }
   };
 
@@ -51,62 +47,54 @@ export default function LoginOverlay({ onLogin, onSignup }) {
       <div className="password-box">
         <img src={passwordImage} alt="RAW Logo" className="password-logo" />
 
-        {/* EMAIL LOGIN FORM */}
-        <form onSubmit={handleEmailLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <div className="auth-panels">
+          {/* ACCESS CODE PANEL */}
+          <div className="auth-panel">
+            <div className="auth-panel-label">Enter with code</div>
+            <form onSubmit={handleCodeLogin}>
+              <input
+                type="text"
+                placeholder="Access code"
+                value={accessCode}
+                onChange={(e) => setAccessCode(e.target.value)}
+              />
+              <button type="submit">Enter</button>
+            </form>
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="auth-divider"><span>or</span></div>
 
-          <button type="submit">Unlock</button>
-        </form>
-
-        {/* DIVIDER */}
-        <div style={{ margin: "16px 0", opacity: 0.6 }}>
-          — or —
+          {/* ACCOUNT PANEL */}
+          <div className="auth-panel">
+            <div className="auth-panel-label">Account</div>
+            <form onSubmit={handleEmailLogin}>
+              <input
+                type="email"
+                placeholder="Email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="submit">Log in</button>
+            </form>
+            <button
+              type="button"
+              className="secondary-btn"
+              onClick={() => setSignupOpen(true)}
+            >
+              Sign up
+            </button>
+          </div>
         </div>
 
-        {/* ACCESS CODE FORM */}
-        <form onSubmit={handleCodeLogin}>
-          <input
-            type="text"
-            placeholder="Access code"
-            value={accessCode}
-            onChange={(e) => setAccessCode(e.target.value)}
-          />
-
-          <button type="submit" className="secondary-btn">
-            Enter with code
-          </button>
-        </form>
-
-        {/* SIGNUP */}
-        <button
-          type="button"
-          className="secondary-btn"
-          onClick={() => setSignupOpen(true)}
-          style={{ marginTop: "12px" }}
-        >
-          Sign up
-        </button>
-
-        {/* ERROR */}
-        {error && (
-          <div className="error-message" style={{ marginTop: "10px" }}>
-            {error}
-          </div>
-        )}
+        {error && <div className="error-message">{error}</div>}
       </div>
 
       <SignupModal

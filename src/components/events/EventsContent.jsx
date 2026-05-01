@@ -72,27 +72,43 @@ export default function EventsContent() {
     }
   };
 
+  const isVideo = (url) => url?.toLowerCase().endsWith(".mp4");
+
   const uploadEventImage = async (eventId, file) => {
-    const ext = file.name.split(".").pop();
+    const ext = file.name.split(".").pop().toLowerCase();
+    const allowed = ["jpg", "jpeg", "png", "gif", "webp", "mp4"];
+    if (!allowed.includes(ext)) {
+      alert("Only JPG, PNG, GIF, WebP, and MP4 files are allowed");
+      return;
+    }
+
     const fileName = `${eventId}.${ext}`;
-  
+
     const { error } = await supabase.storage
       .from("event-images")
       .upload(fileName, file, { upsert: true });
-  
+
     if (error) {
       alert("Upload failed");
       return;
     }
-  
+
     const { data } = supabase.storage
       .from("event-images")
       .getPublicUrl(fileName);
-  
-    await supabase
+
+    const { error: updateError } = await supabase
       .from("events")
       .update({ image_url: data.publicUrl })
       .eq("id", eventId);
+
+    if (!updateError) {
+      setEditableEvents(prev =>
+        prev.map(ev =>
+          ev.id === eventId ? { ...ev, image_url: data.publicUrl } : ev
+        )
+      );
+    }
   };
 
   return (
@@ -111,14 +127,25 @@ export default function EventsContent() {
         <div className="event-card" key={event.id}>
           {isAdmin ? (
             <>
-              {/* IMAGE PREVIEW WITH TICKET OVERLAY */}
+              {/* IMAGE/VIDEO PREVIEW WITH TICKET OVERLAY */}
               {event.image_url && (
                 <div className="event-image-container">
-                  <img
-                    src={event.image_url}
-                    alt={event.title}
-                    className="event-image"
-                  />
+                  {isVideo(event.image_url) ? (
+                    <video
+                      src={event.image_url}
+                      className="event-image"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={event.image_url}
+                      alt={event.title}
+                      className="event-image"
+                    />
+                  )}
                   {event.ticket_link && (
                     <a
                       href={event.ticket_link}
@@ -135,7 +162,7 @@ export default function EventsContent() {
               {/* IMAGE UPLOAD */}
               <input
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,.mp4"
                 onChange={(e) => {
                   if (!e.target.files?.[0]) return;
                   uploadEventImage(event.id, e.target.files[0]);
@@ -205,11 +232,22 @@ export default function EventsContent() {
               {/* PUBLIC VIEW */}
               <div className="event-image-container">
                 {event.image_url && (
-                  <img
-                    src={event.image_url}
-                    alt={event.title}
-                    className="event-image"
-                  />
+                  isVideo(event.image_url) ? (
+                    <video
+                      src={event.image_url}
+                      className="event-image"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={event.image_url}
+                      alt={event.title}
+                      className="event-image"
+                    />
+                  )
                 )}
                 {event.ticket_link && (
                   <a
